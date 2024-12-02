@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  ragflow:
+  - apiVersion: v2
+    appVersion: 3242c65
+    created: "2024-12-02T16:59:46.625667709Z"
+    description: A Helm chart for deploying RAGFlow on Kubernetes
+    digest: 9a4ae83e987278706a67a859401ad415e7d5ae862877794918b8bec927b61208
+    name: ragflow
+    type: application
+    urls:
+    - ragflow-0.1.0-dev.0.feat-helm-chart-publish.1788.tgz
+    version: 0.1.0-dev.0.feat-helm-chart-publish.1788
+generated: "2024-12-02T16:59:46.624978602Z"
