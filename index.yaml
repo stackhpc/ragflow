@@ -3,7 +3,7 @@ entries:
   ragflow:
   - apiVersion: v2
     appVersion: 3242c65
-    created: "2024-12-03T13:59:52.251774809Z"
+    created: "2024-12-03T16:49:28.784230438Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 9a4ae83e987278706a67a859401ad415e7d5ae862877794918b8bec927b61208
     name: ragflow
@@ -12,8 +12,18 @@ entries:
     - ragflow-0.1.0-dev.0.feat-helm-chart-publish.1788.tgz
     version: 0.1.0-dev.0.feat-helm-chart-publish.1788
   - apiVersion: v2
+    appVersion: ec25b74
+    created: "2024-12-03T16:49:28.783694346Z"
+    description: A Helm chart for deploying RAGFlow on Kubernetes
+    digest: 7990bf80a7ec0b5d3a7bc5810a7eb3df5e5eba03aa44bf95defefa0b17c46843
+    name: ragflow
+    type: application
+    urls:
+    - ragflow-0.1.0-dev.0.feat-azimuth-helm.1800.tgz
+    version: 0.1.0-dev.0.feat-azimuth-helm.1800
+  - apiVersion: v2
     appVersion: 990d2d6
-    created: "2024-12-03T13:59:52.251243363Z"
+    created: "2024-12-03T16:49:28.783175305Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 85e4b28e147a655d6b1cbc677ea4ec8cb5100a622f932906e586f8eb256fe8db
     name: ragflow
@@ -23,7 +33,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1799
   - apiVersion: v2
     appVersion: 9f6d3bb
-    created: "2024-12-03T13:59:52.250694405Z"
+    created: "2024-12-03T16:49:28.782615669Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 42c402bd8171f7429dea0098454e3be0d3b4b83103e9a6d95ca373e60250d3f0
     name: ragflow
@@ -33,8 +43,24 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1798
   ragflow-azimuth:
   - apiVersion: v2
+    appVersion: ec25b74
+    created: "2024-12-03T16:49:28.786366122Z"
+    dependencies:
+    - name: ragflow
+      repository: file://../helm
+      version: '>=0-0'
+    description: A self-service Retrieval-Augmented Generation (RAG) environment for
+      working with Large Language Models.
+    digest: 015c2bb6e05ed61312e20b4aebe6cf91869be410c944a4e8734c5ca7bf859f56
+    icon: https://raw.githubusercontent.com/infiniflow/ragflow/refs/heads/main/web/src/assets/logo-with-text.png
+    name: ragflow-azimuth
+    type: application
+    urls:
+    - ragflow-azimuth-0.1.0-dev.0.feat-azimuth-helm.1800.tgz
+    version: 0.1.0-dev.0.feat-azimuth-helm.1800
+  - apiVersion: v2
     appVersion: 990d2d6
-    created: "2024-12-03T13:59:52.253266232Z"
+    created: "2024-12-03T16:49:28.785680299Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -50,7 +76,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1799
   - apiVersion: v2
     appVersion: 9f6d3bb
-    created: "2024-12-03T13:59:52.252573004Z"
+    created: "2024-12-03T16:49:28.78497467Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -64,4 +90,4 @@ entries:
     urls:
     - ragflow-azimuth-0.1.0-dev.0.feat-azimuth-helm.1798.tgz
     version: 0.1.0-dev.0.feat-azimuth-helm.1798
-generated: "2024-12-03T13:59:52.249972032Z"
+generated: "2024-12-03T16:49:28.781670995Z"
