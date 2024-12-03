@@ -6,4 +6,4 @@ metadata:
 spec:
   reservationName: {{ include "ragflow-azimuth.fullname" . }}
   upstream:
-    serviceName: {{ include "ragflow-azimuth.fullname" . }}
+    serviceName: {{ .Release.Name }}
