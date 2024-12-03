@@ -19,6 +19,9 @@ jobs:
         id: semver
         uses: azimuth-cloud/github-actions/semver@master
 
+      - name: Debug
+        run: helm dependency update helm-azimuth
+
       - name: Publish Helm charts
         uses: azimuth-cloud/github-actions/helm-publish@master
         with:
