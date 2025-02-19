@@ -48,6 +48,23 @@ spec:
         resources:
           {{- . | toYaml | nindent 10 }}
         {{- end }}
+      {{- if .Values.apiProxy.enabled }}
+      initContainers:
+      - name: api-proxy
+        image: "nginx:1.27"
+        restartPolicy: Always
+        ports:
+          - containerPort: 8080
+            name: http-api-proxy
+        volumeMounts:
+          {{/* NOTE(sd109): We want to explicitly overwrite Nginx's default.conf here */}}
+          - mountPath: /etc/nginx/conf.d/default.conf
+            subPath: api-proxy.conf
+            name: nginx-config-volume
+          - mountPath: /etc/nginx/proxy.conf
+            subPath: proxy.conf
+            name: nginx-config-volume
+      {{- end }}
       volumes:
         - name: nginx-config-volume
           configMap:
@@ -70,3 +87,23 @@ spec:
       targetPort: http
       name: http
   type: {{ .Values.ragflow.service.type }}
+---
+{{- if .Values.apiProxy.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-api-proxy
+  labels:
+    {{- include "ragflow.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ragflow
+spec:
+  selector:
+    {{- include "ragflow.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: ragflow
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: http-api-proxy
+      name: http-api-proxy
+  type: {{ .Values.apiProxy.service.type }}
+{{- end }}

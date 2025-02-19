@@ -73,3 +73,19 @@ data:
 
         include /etc/nginx/conf.d/ragflow.conf;
     }
+{{- if .Values.apiProxy.enabled }}
+  api-proxy.conf: |
+    server {
+        listen 8080;
+        server_name _;
+
+        location ~ ^/(v1|api) {
+            proxy_pass http://localhost:9380;
+            include proxy.conf;
+        }
+
+        location / {
+            return 404;
+        }
+    }
+{{- end }}

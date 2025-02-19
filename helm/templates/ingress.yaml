@@ -35,9 +35,53 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "ragflow.fullname" $ }}
+                name: {{ .Release.Name }}
                 port:
                   name: http
+          {{- end }}
+    {{- end }}
+{{- end }}
+{{- if .Values.apiProxy.ingress.enabled -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "ragflow.fullname" . }}-api
+  labels:
+    {{- include "ragflow.labels" . | nindent 4 }}
+  {{- with .Values.apiProxy.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.apiProxy.ingress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- if .Values.apiProxy.ingress.tls }}
+  tls:
+    {{- range .Values.apiProxy.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.apiProxy.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            {{- with .pathType }}
+            pathType: {{ . }}
+            {{- end }}
+            backend:
+              service:
+                name: {{ .Release.Name }}-api-proxy
+                port:
+                  name: http-api-proxy
           {{- end }}
     {{- end }}
 {{- end }}

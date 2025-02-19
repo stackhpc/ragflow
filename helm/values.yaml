@@ -153,3 +153,32 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+# This block is for configuring the RAGFlow API proxy component
+# which allows for exposing the RAGFlow API as a separate entity
+# from the RAGFlow web frontend. This can be useful, for example,
+# in cases where the frontend is secured behind an authenticating
+# proxy. In such cases we want to allow the option for RAGFlow API
+# access to bypass the auth proxy since API traffic is always
+# authenticated by a RAGFlow API key anyway, so access is only
+# possible for users who are already able to authenticate to the
+# frontend in order to generate an API key.
+apiProxy:
+  enabled: false
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
