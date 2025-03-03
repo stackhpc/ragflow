@@ -3,7 +3,17 @@ entries:
   ragflow:
   - apiVersion: v2
     appVersion: 3b6fdc6
-    created: "2025-03-03T15:47:41.241081254Z"
+    created: "2025-03-03T15:48:17.899825849Z"
+    description: A Helm chart for deploying RAGFlow on Kubernetes
+    digest: aac586319bf1bc591a78ee537610b8a914828cd7984fb47bbaf67e9fbf807660
+    name: ragflow
+    type: application
+    urls:
+    - ragflow-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 3b6fdc6
+    created: "2025-03-03T15:48:17.899298071Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: d2554749b17bdfb579bbf000d95801048a5d7d6f20920ac76b02e2055f7e62c5
     name: ragflow
@@ -13,7 +23,7 @@ entries:
     version: 0.1.3-dev.0.main.3
   - apiVersion: v2
     appVersion: c7c9398
-    created: "2025-03-03T15:47:41.240545538Z"
+    created: "2025-03-03T15:48:17.898770313Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 8adeace104c1b43282809c5ecb7908adeada6439e927e0c96a8f89f5d0c2c70d
     name: ragflow
@@ -23,7 +33,7 @@ entries:
     version: 0.1.3-dev.0.feat-api-svc.2
   - apiVersion: v2
     appVersion: 3b80c87
-    created: "2025-03-03T15:47:41.239975789Z"
+    created: "2025-03-03T15:48:17.898226755Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 2791902e46f4cd08f70276aba1a34c3d2a864d5db62d97ade479e76b93df82ad
     name: ragflow
@@ -33,7 +43,7 @@ entries:
     version: 0.1.3-dev.0.feat-api-sidecar.2
   - apiVersion: v2
     appVersion: bdd93d0
-    created: "2025-03-03T15:47:41.239398165Z"
+    created: "2025-03-03T15:48:17.897626421Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 0801a94138072fbfc83aa1f689873a5b85b963fd323d608d6f8c41276c8b92bc
     name: ragflow
@@ -43,7 +53,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 6a59674
-    created: "2025-03-03T15:47:41.23873456Z"
+    created: "2025-03-03T15:48:17.897108982Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 70f0dd45e0182be295d5968c910b46fcbbc0fae7d2c6c7e53f831b564b5c46e3
     name: ragflow
@@ -53,7 +63,7 @@ entries:
     version: 0.1.2-dev.0.update-upstream.363
   - apiVersion: v2
     appVersion: 1733d9a
-    created: "2025-03-03T15:47:41.237198138Z"
+    created: "2025-03-03T15:48:17.896538254Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 5fc1df6db472090a7d695d0c7cc5317f57e01999a6ce977614f36b56e68e45f7
     name: ragflow
@@ -63,7 +73,7 @@ entries:
     version: 0.1.2-dev.0.update-upstream.362
   - apiVersion: v2
     appVersion: bdd93d0
-    created: "2025-03-03T15:47:41.235739215Z"
+    created: "2025-03-03T15:48:17.896000286Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 44d751e868946bcadcd2268ec0a2622d465a9a915594dee72466f933a172def7
     name: ragflow
@@ -73,7 +83,7 @@ entries:
     version: 0.1.2-dev.0.main.364
   - apiVersion: v2
     appVersion: 5581bd7
-    created: "2025-03-03T15:47:41.234804747Z"
+    created: "2025-03-03T15:48:17.895189819Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: bf291e88cdb61ddf2baba5bbb9eb46b1f16afda26305f4d7675f262804f81acd
     name: ragflow
@@ -83,7 +93,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 5581bd7
-    created: "2025-03-03T15:47:41.233905876Z"
+    created: "2025-03-03T15:48:17.893968863Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 8590e3d27d45479766b7be354ae29ad158974432aca90a75c5c6fc59a9eedadd
     name: ragflow
@@ -93,7 +103,7 @@ entries:
     version: 0.1.1-dev.0.main.2
   - apiVersion: v2
     appVersion: bde5549
-    created: "2025-03-03T15:47:41.232974284Z"
+    created: "2025-03-03T15:48:17.893453508Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: dfa8ed820a20ba7be6e010b29e2110eb33aa86659ff3338cb146fe3a71be2dc9
     name: ragflow
@@ -103,7 +113,7 @@ entries:
     version: 0.1.1-dev.0.fix-mysql-binlog.1
   - apiVersion: v2
     appVersion: ef40c69
-    created: "2025-03-03T15:47:41.232045817Z"
+    created: "2025-03-03T15:48:17.89293144Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: e291de716fbfe92f2f4afaf2646f2fb6cc3b1f11d397862d2840892001c53a12
     name: ragflow
@@ -113,7 +123,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: ef40c69
-    created: "2025-03-03T15:47:41.231070083Z"
+    created: "2025-03-03T15:48:17.892372945Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: ddda662401c78a236d922a23c51c89738ce01dd8138be78595d037d075e65008
     name: ragflow
@@ -123,7 +133,7 @@ entries:
     version: 0.1.0-dev.0.main.1796
   - apiVersion: v2
     appVersion: 3242c65
-    created: "2025-03-03T15:47:41.230168366Z"
+    created: "2025-03-03T15:48:17.891562527Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 9a4ae83e987278706a67a859401ad415e7d5ae862877794918b8bec927b61208
     name: ragflow
@@ -133,7 +143,7 @@ entries:
     version: 0.1.0-dev.0.feat-helm-chart-publish.1788
   - apiVersion: v2
     appVersion: 0baf9f7
-    created: "2025-03-03T15:47:41.229244688Z"
+    created: "2025-03-03T15:48:17.890855313Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 4f75db4909f63f064e698fe7ec75da74d8877926eb6fd6a8116057e6626cfa4e
     name: ragflow
@@ -143,7 +153,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1802
   - apiVersion: v2
     appVersion: 024087c
-    created: "2025-03-03T15:47:41.228325589Z"
+    created: "2025-03-03T15:48:17.890272321Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 753d7f1c10272580b9ee5121a509e409ddc70aab9eda90455c6a210a6fd53079
     name: ragflow
@@ -153,7 +163,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1801
   - apiVersion: v2
     appVersion: ec25b74
-    created: "2025-03-03T15:47:41.227261981Z"
+    created: "2025-03-03T15:48:17.889637503Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 7990bf80a7ec0b5d3a7bc5810a7eb3df5e5eba03aa44bf95defefa0b17c46843
     name: ragflow
@@ -163,7 +173,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1800
   - apiVersion: v2
     appVersion: 990d2d6
-    created: "2025-03-03T15:47:41.22618027Z"
+    created: "2025-03-03T15:48:17.888999869Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 85e4b28e147a655d6b1cbc677ea4ec8cb5100a622f932906e586f8eb256fe8db
     name: ragflow
@@ -173,7 +183,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1799
   - apiVersion: v2
     appVersion: 9f6d3bb
-    created: "2025-03-03T15:47:41.225122092Z"
+    created: "2025-03-03T15:48:17.888463815Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 42c402bd8171f7429dea0098454e3be0d3b4b83103e9a6d95ca373e60250d3f0
     name: ragflow
@@ -183,7 +193,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1798
   - apiVersion: v2
     appVersion: 801949e
-    created: "2025-03-03T15:47:41.224101083Z"
+    created: "2025-03-03T15:48:17.887904698Z"
     description: A Helm chart for deploying RAGFlow on Kubernetes
     digest: 5ea1c7169e3ee8c9de33ea5d7f8c5e4af43f3cecc41bf9d3498309520801adab
     name: ragflow
@@ -194,7 +204,23 @@ entries:
   ragflow-azimuth:
   - apiVersion: v2
     appVersion: 3b6fdc6
-    created: "2025-03-03T15:47:41.255628354Z"
+    created: "2025-03-03T15:48:17.915424577Z"
+    dependencies:
+    - name: ragflow
+      repository: file://../helm
+      version: '>=0-0'
+    description: A self-service Retrieval-Augmented Generation (RAG) environment for
+      working with Large Language Models.
+    digest: 975469e8711a4a4ffa745b77ef9e4aea43b316490c71503c3d6785c40cea7824
+    icon: https://raw.githubusercontent.com/infiniflow/ragflow/refs/heads/main/web/src/assets/logo-with-text.png
+    name: ragflow-azimuth
+    type: application
+    urls:
+    - ragflow-azimuth-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 3b6fdc6
+    created: "2025-03-03T15:48:17.91470531Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -210,7 +236,7 @@ entries:
     version: 0.1.3-dev.0.main.3
   - apiVersion: v2
     appVersion: c7c9398
-    created: "2025-03-03T15:47:41.254609008Z"
+    created: "2025-03-03T15:48:17.913999829Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -226,7 +252,7 @@ entries:
     version: 0.1.3-dev.0.feat-api-svc.2
   - apiVersion: v2
     appVersion: 3b80c87
-    created: "2025-03-03T15:47:41.253864223Z"
+    created: "2025-03-03T15:48:17.913232843Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -242,7 +268,7 @@ entries:
     version: 0.1.3-dev.0.feat-api-sidecar.2
   - apiVersion: v2
     appVersion: bdd93d0
-    created: "2025-03-03T15:47:41.253083852Z"
+    created: "2025-03-03T15:48:17.911555754Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -258,7 +284,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 6a59674
-    created: "2025-03-03T15:47:41.252403787Z"
+    created: "2025-03-03T15:48:17.91078451Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -274,7 +300,7 @@ entries:
     version: 0.1.2-dev.0.update-upstream.363
   - apiVersion: v2
     appVersion: 1733d9a
-    created: "2025-03-03T15:47:41.251696322Z"
+    created: "2025-03-03T15:48:17.91007417Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -290,7 +316,7 @@ entries:
     version: 0.1.2-dev.0.update-upstream.362
   - apiVersion: v2
     appVersion: bdd93d0
-    created: "2025-03-03T15:47:41.250987694Z"
+    created: "2025-03-03T15:48:17.909358791Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -306,7 +332,7 @@ entries:
     version: 0.1.2-dev.0.main.364
   - apiVersion: v2
     appVersion: 5581bd7
-    created: "2025-03-03T15:47:41.250283725Z"
+    created: "2025-03-03T15:48:17.90866961Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -322,7 +348,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 5581bd7
-    created: "2025-03-03T15:47:41.249613378Z"
+    created: "2025-03-03T15:48:17.908003393Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -338,7 +364,7 @@ entries:
     version: 0.1.1-dev.0.main.2
   - apiVersion: v2
     appVersion: bde5549
-    created: "2025-03-03T15:47:41.248900483Z"
+    created: "2025-03-03T15:48:17.907309464Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -354,7 +380,7 @@ entries:
     version: 0.1.1-dev.0.fix-mysql-binlog.1
   - apiVersion: v2
     appVersion: ef40c69
-    created: "2025-03-03T15:47:41.248173982Z"
+    created: "2025-03-03T15:48:17.906616606Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -370,7 +396,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: ef40c69
-    created: "2025-03-03T15:47:41.247275221Z"
+    created: "2025-03-03T15:48:17.905936423Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -386,7 +412,7 @@ entries:
     version: 0.1.0-dev.0.main.1796
   - apiVersion: v2
     appVersion: 0baf9f7
-    created: "2025-03-03T15:47:41.245465788Z"
+    created: "2025-03-03T15:48:17.905239407Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -402,7 +428,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1802
   - apiVersion: v2
     appVersion: 024087c
-    created: "2025-03-03T15:47:41.244739677Z"
+    created: "2025-03-03T15:48:17.904514971Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -418,7 +444,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1801
   - apiVersion: v2
     appVersion: ec25b74
-    created: "2025-03-03T15:47:41.244003929Z"
+    created: "2025-03-03T15:48:17.903482887Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -434,7 +460,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1800
   - apiVersion: v2
     appVersion: 990d2d6
-    created: "2025-03-03T15:47:41.243254496Z"
+    created: "2025-03-03T15:48:17.902154409Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -450,7 +476,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1799
   - apiVersion: v2
     appVersion: 9f6d3bb
-    created: "2025-03-03T15:47:41.242564182Z"
+    created: "2025-03-03T15:48:17.901446404Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -466,7 +492,7 @@ entries:
     version: 0.1.0-dev.0.feat-azimuth-helm.1798
   - apiVersion: v2
     appVersion: 801949e
-    created: "2025-03-03T15:47:41.241865513Z"
+    created: "2025-03-03T15:48:17.900655453Z"
     dependencies:
     - name: ragflow
       repository: file://../helm
@@ -480,4 +506,4 @@ entries:
     urls:
     - ragflow-azimuth-0.1.0-dev.0.feat-azimuth-helm.1795.tgz
     version: 0.1.0-dev.0.feat-azimuth-helm.1795
-generated: "2025-03-03T15:47:41.222644671Z"
+generated: "2025-03-03T15:48:17.887180783Z"
