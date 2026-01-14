@@ -7,6 +7,105 @@ slug: /release_notes
 
 Key features, improvements and bug fixes in the latest releases.
 
+
+## v0.23.1
+
+Released on December 31, 2025.
+
+### Fixed issues
+
+- Resolved an issue where the RAGFlow Server would fail to start if an empty memory object existed, and corrected the inability to delete a newly created empty Memory.
+- Improved the stability of memory extraction across all memory types after selection.
+- Fixed MDX file parsing support.
+
+### Data sources
+
+- GitHub
+- Gitlab
+- Asana
+- IMAP
+
+## v0.23.0
+
+Released on December 27, 2025.
+
+### New features
+
+- Memory
+   - Implements a **Memory** interface for managing memory.
+   - Supports configuring context via the **Retrieval** or **Message** component.
+- Agent
+   - Improves the **Agent** component's performance by refactoring the underlying architecture.
+   - The **Agent** component can now output structured data for use in downstream components.
+   - Supports using webhook to trigger agent execution.
+   - Supports voice input/output.
+   - Supports configuring multiple **Retrieval** components per **Agent** component.
+- Ingestion pipeline
+  - Supports extracting table of contents in the **Transformer** component to improve long-context RAG performance.
+- Dataset
+   - Supports configuring context window for images and tables.
+   - Introduces parent-child chunking strategy.
+   - Supports auto-generation of metadata during file parsing.
+- Chat: Supports voice input.
+
+### Improvements
+
+- Bumps RAGFlow's document engine, [Infinity](https://github.com/infiniflow/infinity) to v0.6.15 (backward compatible).
+
+### Data sources
+
+- Google Cloud Storage
+- Gmail
+- Dropbox
+- WebDAV
+- Airtable
+
+### Model support
+
+- GPT-5.2
+- GPT-5.2 Pro
+- GPT-5.1
+- GPT-5.1 Instant
+- Claude Opus 4.5
+- MiniMax M2
+- GLM-4.7.
+- A MinerU configuration interface.
+- AI Badgr (model provider).
+
+### API changes
+
+#### HTTP API
+
+- [Converse with Agent](./references/http_api_reference.md#converse-with-agent) returns complete execution trace logs.
+- [Create chat completion](./references/http_api_reference.md#create-chat-completion) supports metadata-based filtering.
+- [Converse with chat assistant](./references/http_api_reference.md#converse-with-chat-assistant) supports metadata-based filtering.
+
+## v0.22.1
+
+Released on November 19, 2025.
+
+### Improvements
+
+- Agent:
+  - Supports exporting Agent outputs in Word or Markdown formats.
+  - Adds a **List operations** component.
+  - Adds a **Variable aggregator** component.
+- Data sources:
+  - Supports S3-compatible data sources, e.g., MinIO.
+  - Adds data synchronization with JIRA.
+- Continues the redesign of the **Profile** page layouts.
+- Upgrades the Flask web framework from synchronous to asynchronous, increasing concurrency and preventing blocking issues caused when requesting upstream LLM services.
+
+### Fixed issues
+
+- A v0.22.0 issue: Users failed to parse uploaded files or switch embedding model in a dataset containing parsed files using a built-in model from a `-full` RAGFlow edition.
+- Image concatenated in Word documents. [#11310](https://github.com/infiniflow/ragflow/pull/11310)
+- Mixed images and text were not correctly displayed in the chat history.
+
+### Newly supported models
+
+- Gemini 3 Pro Preview
+
 ## v0.22.0
 
 Released on November 12, 2025.
@@ -77,7 +176,7 @@ Released on October 15, 2025.
 - Redesigns RAGFlow's Login and Registration pages.
 - Upgrades RAGFlow's document engine Infinity to v0.6.0.
 
-### Added models
+### Newly supported models
 
 - Tongyi Qwen 3 series
 - Claude Sonnet 4.5
@@ -100,7 +199,7 @@ Released on September 10, 2025.
   - **Execute SQL** component enhanced: Replaces the original variable reference component with a text input field, allowing users to write free-form SQL queries and reference variables. See [here](./guides/agent/agent_component_reference/execute_sql.md).
 - Chat: Re-enables **Reasoning** and **Cross-language search**.
 
-### Added models
+### Newly supported models
 
 - Meituan LongCat
 - Kimi: kimi-k2-turbo-preview and kimi-k2-0905-preview
@@ -139,7 +238,7 @@ Released on August 27, 2025.
   - Improves Markdown file parsing, with AST support to avoid unintended chunking.
   - Enhances HTML parsing, supporting bs4-based HTML tag traversal.
 
-### Added models
+### Newly supported models
 
 ZHIPU GLM-4.5
 
@@ -200,7 +299,7 @@ Released on August 8, 2025.
 - The **Retrieval** component now supports the dynamic specification of dataset names using variables.
 - The user interface now includes a French language option.
 
-### Added Models
+### Newly supported models
 
 - GPT-5
 - Claude 4.1
@@ -264,7 +363,7 @@ Released on June 23, 2025.
 - Added support for models installed via Ollama or VLLM when creating a dataset through the API. [#8069](https://github.com/infiniflow/ragflow/pull/8069)
 - Enabled role-based authentication for S3 bucket access. [#8149](https://github.com/infiniflow/ragflow/pull/8149)
 
-### Added models
+### Newly supported models
 
 - Qwen 3 Embedding. [#8184](https://github.com/infiniflow/ragflow/pull/8184) 
 - Voyage Multimodal 3. [#7987](https://github.com/infiniflow/ragflow/pull/7987)
@@ -693,7 +792,7 @@ Released on August 26, 2024.
 - Incorporates monitoring for the task executor.
 - Introduces Agent tools **GitHub**, **DeepL**, **BaiduFanyi**, **QWeather**, and **GoogleScholar**.
 - Supports chunking of EML files.
-- Supports more LLMs or model services: **GPT-4o-mini**, **PerfXCloud**, **TogetherAI**, **Upstage**, **Novita AI**, **01.AI**, **SiliconFlow**, **PPIO**, **XunFei Spark**, **Baidu Yiyan**, and **Tencent Hunyuan**.
+- Supports more LLMs or model services: **GPT-4o-mini**, **PerfXCloud**, **TogetherAI**, **Upstage**, **Novita AI**, **01.AI**, **SiliconFlow**, **PPIO**, **XunFei Spark**, **Jiekou.AI**, **Baidu Yiyan**, and **Tencent Hunyuan**.
 
 ## v0.9.0
 

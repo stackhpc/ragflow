@@ -8,7 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useFetchUserInfo, useListTenant } from '@/hooks/user-setting-hooks';
+import {
+  useFetchUserInfo,
+  useListTenant,
+} from '@/hooks/use-user-setting-request';
 import { formatDate } from '@/utils/date';
 import { ArrowDown, ArrowUp, ArrowUpDown, LogOut } from 'lucide-react';
 import { useMemo, useState } from 'react';
@@ -72,7 +75,7 @@ const TenantTable = ({ searchTerm }: { searchTerm: string }) => {
     <div className="rounded-lg bg-bg-input scrollbar-auto overflow-hidden border border-border-default">
       <Table rootClassName="rounded-lg">
         <TableHeader className="bg-bg-title">
-          <TableRow>
+          <TableRow className="hover:bg-bg-title">
             <TableHead className="h-12 px-4">{t('common.name')}</TableHead>
             <TableHead
               className="h-12 px-4 cursor-pointer"
