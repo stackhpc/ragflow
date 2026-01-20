@@ -12,7 +12,7 @@ import { useTranslate } from '@/hooks/common-hooks';
 import {
   ISystemModelSettingSavingParams,
   useComposeLlmOptionsByModelTypes,
-} from '@/hooks/llm-hooks';
+} from '@/hooks/use-llm-request';
 import { CircleQuestionMark } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFetchSystemModelSettingOnMount } from '../hooks';
@@ -27,7 +27,6 @@ interface IProps {
 const SystemSetting = ({ onOk, loading }: IProps) => {
   const { systemSetting: initialValues, allOptions } =
     useFetchSystemModelSettingOnMount();
-  const { t: tcommon } = useTranslate('common');
   const { t } = useTranslate('setting');
 
   const [formData, setFormData] = useState({
@@ -140,7 +139,7 @@ const SystemSetting = ({ onOk, loading }: IProps) => {
   }) => {
     return (
       <div className="flex gap-3">
-        <label className="block text-sm font-medium text-text-secondary mb-1 w-1/4">
+        <label className="block text-sm font-normal text-text-secondary mb-1 w-1/4">
           {isRequired && <span className="text-red-500">*</span>}
           {label}
           {tooltip && (
@@ -149,7 +148,7 @@ const SystemSetting = ({ onOk, loading }: IProps) => {
               <TooltipTrigger>
                 <CircleQuestionMark
                   size={12}
-                  className="ml-1 text-text-disabled text-xs"
+                  className="ml-1 text-text-secondary text-xs"
                 />
               </TooltipTrigger>
             </Tooltip>
@@ -162,6 +161,7 @@ const SystemSetting = ({ onOk, loading }: IProps) => {
           options={options}
           onChange={(value) => handleFieldChange(id, value)}
           placeholder={t('selectModelPlaceholder')}
+          emptyData={t('modelEmptyTip')}
         />
       </div>
     );

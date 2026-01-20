@@ -48,17 +48,35 @@ from common.data_source.exceptions import RateLimitTriedTooManyTimesError
 from common.data_source.interfaces import CT, CheckpointedConnector, CheckpointOutputWrapper, ConfluenceUser, LoadFunction, OnyxExtensionType, SecondsSinceUnixEpoch, TokenResponse
 from common.data_source.models import BasicExpertInfo, Document
 
+_TZ_SUFFIX_PATTERN = re.compile(r"([+-])([\d:]+)$")
+
 
 def datetime_from_string(datetime_string: str) -> datetime:
     datetime_string = datetime_string.strip()
 
+    match_jira_format = _TZ_SUFFIX_PATTERN.search(datetime_string)
+    if match_jira_format:
+        sign, tz_field = match_jira_format.groups()
+        digits = tz_field.replace(":", "")
+
+        if digits.isdigit() and 1 <= len(digits) <= 4:
+            if len(digits) >= 3:
+                hours = digits[:-2].rjust(2, "0")
+                minutes = digits[-2:]
+            else:
+                hours = digits.rjust(2, "0")
+                minutes = "00"
+
+            normalized = f"{sign}{hours}:{minutes}"
+            datetime_string = f"{datetime_string[: match_jira_format.start()]}{normalized}"
+
     # Handle the case where the datetime string ends with 'Z' (Zulu time)
-    if datetime_string.endswith('Z'):
-        datetime_string = datetime_string[:-1] + '+00:00'
+    if datetime_string.endswith("Z"):
+        datetime_string = datetime_string[:-1] + "+00:00"
 
     # Handle timezone format "+0000" -> "+00:00"
-    if datetime_string.endswith('+0000'):
-        datetime_string = datetime_string[:-5] + '+00:00'
+    if datetime_string.endswith("+0000"):
+        datetime_string = datetime_string[:-5] + "+00:00"
 
     datetime_object = datetime.fromisoformat(datetime_string)
 
@@ -236,18 +254,21 @@ def create_s3_client(bucket_type: BlobType, credentials: dict[str, Any], europea
     elif bucket_type == BlobType.S3:
         authentication_method = credentials.get("authentication_method", "access_key")
 
+        region_name = credentials.get("region") or None
+
         if authentication_method == "access_key":
             session = boto3.Session(
                 aws_access_key_id=credentials["aws_access_key_id"],
                 aws_secret_access_key=credentials["aws_secret_access_key"],
+                region_name=region_name,
             )
-            return session.client("s3")
+            return session.client("s3", region_name=region_name)
 
         elif authentication_method == "iam_role":
             role_arn = credentials["aws_role_arn"]
 
             def _refresh_credentials() -> dict[str, str]:
-                sts_client = boto3.client("sts")
+                sts_client = boto3.client("sts", region_name=credentials.get("region") or None)
                 assumed_role_object = sts_client.assume_role(
                     RoleArn=role_arn,
                     RoleSessionName=f"onyx_blob_storage_{int(datetime.now().timestamp())}",
@@ -267,11 +288,11 @@ def create_s3_client(bucket_type: BlobType, credentials: dict[str, Any], europea
             )
             botocore_session = get_session()
             botocore_session._credentials = refreshable
-            session = boto3.Session(botocore_session=botocore_session)
-            return session.client("s3")
+            session = boto3.Session(botocore_session=botocore_session, region_name=region_name)
+            return session.client("s3", region_name=region_name)
 
         elif authentication_method == "assume_role":
-            return boto3.client("s3")
+            return boto3.client("s3", region_name=region_name)
 
         else:
             raise ValueError("Invalid authentication method for S3.")
@@ -292,6 +313,16 @@ def create_s3_client(bucket_type: BlobType, credentials: dict[str, Any], europea
             aws_access_key_id=credentials["access_key_id"],
             aws_secret_access_key=credentials["secret_access_key"],
             region_name=credentials["region"],
+        )
+    elif bucket_type == BlobType.S3_COMPATIBLE:
+        addressing_style = credentials.get("addressing_style", "virtual")
+
+        return boto3.client(
+            "s3",
+            endpoint_url=credentials["endpoint_url"],
+            aws_access_key_id=credentials["aws_access_key_id"],
+            aws_secret_access_key=credentials["aws_secret_access_key"],
+            config=Config(s3={'addressing_style': addressing_style}),
         )
 
     else:
@@ -480,7 +511,7 @@ def get_file_ext(file_name: str) -> str:
 
 
 def is_accepted_file_ext(file_ext: str, extension_type: OnyxExtensionType) -> bool:
-    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
+    image_extensions = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"}
     text_extensions = {".txt", ".md", ".mdx", ".conf", ".log", ".json", ".csv", ".tsv", ".xml", ".yml", ".yaml", ".sql"}
     document_extensions = {".pdf", ".docx", ".pptx", ".xlsx", ".eml", ".epub", ".html"}
 
@@ -705,7 +736,7 @@ def build_time_range_query(
     """Build time range query for Gmail API"""
     query = ""
     if time_range_start is not None and time_range_start != 0:
-        query += f"after:{int(time_range_start)}"
+        query += f"after:{int(time_range_start) + 1}"
     if time_range_end is not None and time_range_end != 0:
         query += f" before:{int(time_range_end)}"
     query = query.strip()
@@ -748,6 +779,15 @@ def time_str_to_utc(time_str: str):
     from datetime import datetime
 
     return datetime.fromisoformat(time_str.replace("Z", "+00:00"))
+
+
+def gmail_time_str_to_utc(time_str: str):
+    """Convert Gmail RFC 2822 time string to UTC."""
+    from email.utils import parsedate_to_datetime
+    from datetime import timezone
+
+    dt = parsedate_to_datetime(time_str)
+    return dt.astimezone(timezone.utc)
 
 
 # Notion Utilities
@@ -900,6 +940,18 @@ def load_all_docs_from_checkpoint_connector(
         connector=connector,
         load=lambda checkpoint: connector.load_from_checkpoint(start=start, end=end, checkpoint=checkpoint),
     )
+
+
+_ATLASSIAN_CLOUD_DOMAINS = (".atlassian.net", ".jira.com", ".jira-dev.com")
+
+
+def is_atlassian_cloud_url(url: str) -> bool:
+    try:
+        host = urlparse(url).hostname or ""
+    except ValueError:
+        return False
+    host = host.lower()
+    return any(host.endswith(domain) for domain in _ATLASSIAN_CLOUD_DOMAINS)
 
 
 def get_cloudId(base_url: str) -> str:

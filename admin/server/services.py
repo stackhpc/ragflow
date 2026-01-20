@@ -14,7 +14,8 @@
 #  limitations under the License.
 #
 
-
+import os
+import logging
 import re
 from werkzeug.security import check_password_hash
 from common.constants import ActiveEnum
@@ -180,17 +181,22 @@ class ServiceMgr:
 
     @staticmethod
     def get_all_services():
+        doc_engine = os.getenv('DOC_ENGINE', 'elasticsearch')
         result = []
         configs = SERVICE_CONFIGS.configs
         for service_id, config in enumerate(configs):
             config_dict = config.to_dict()
+            if config_dict['service_type'] == 'retrieval':
+                if config_dict['extra']['retrieval_type'] != doc_engine:
+                    continue
             try:
                 service_detail = ServiceMgr.get_service_details(service_id)
                 if "status" in service_detail:
                     config_dict['status'] = service_detail['status']
                 else:
                     config_dict['status'] = 'timeout'
-            except Exception:
+            except Exception as e:
+                logging.warning(f"Can't get service details, error: {e}")
                 config_dict['status'] = 'timeout'
             if not config_dict['host']:
                 config_dict['host'] = '-'
@@ -205,17 +211,13 @@ class ServiceMgr:
 
     @staticmethod
     def get_service_details(service_id: int):
-        service_id = int(service_id)
+        service_idx = int(service_id)
         configs = SERVICE_CONFIGS.configs
-        service_config_mapping = {
-            c.id: {
-                'name': c.name,
-                'detail_func_name': c.detail_func_name
-            } for c in configs
-        }
-        service_info = service_config_mapping.get(service_id, {})
-        if not service_info:
-            raise AdminException(f"invalid service_id: {service_id}")
+        if service_idx < 0 or service_idx >= len(configs):
+            raise AdminException(f"invalid service_index: {service_idx}")
+
+        service_config = configs[service_idx]
+        service_info = {'name': service_config.name, 'detail_func_name': service_config.detail_func_name}
 
         detail_func = getattr(health_utils, service_info.get('detail_func_name'))
         res = detail_func()
