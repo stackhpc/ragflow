@@ -55,6 +55,7 @@ spec:
             name: admin
           {{- end }}
         volumeMounts:
+          # ragflow.conf backend handled by env config
           - mountPath: /etc/nginx/proxy.conf
             subPath: proxy.conf
             name: nginx-config-volume
