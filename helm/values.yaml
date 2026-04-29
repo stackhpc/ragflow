@@ -77,7 +77,7 @@ env:
 ragflow:
   image:
     repository: infiniflow/ragflow
-    tag: v0.24.0
+    tag: v0.25.0
     pullPolicy: IfNotPresent
     pullSecrets: []
   # Optional service configuration overrides
@@ -109,18 +109,22 @@ ragflow:
   service:
     # Use LoadBalancer to expose the web interface externally
     type: ClusterIP
+  admin:
+    # Enable Admin Service
+    enabled: false 
+    # Admin Service port configuration
+    port: 9381
+    # Admin Service type
+    serviceType: ClusterIP
   api:
     service:
       enabled: true
       type: ClusterIP
-  # Be careful in enabling the admin server, as it gives access to sensitive
-  # administrative privileges and has default credentials to access the admin API.
-  enableDangerousAdminServer: false
 
 infinity:
   image:
     repository: infiniflow/infinity
-    tag: v0.7.0-dev2
+    tag: v0.7.0-dev5
     pullPolicy: IfNotPresent
     pullSecrets: []
   storage:
