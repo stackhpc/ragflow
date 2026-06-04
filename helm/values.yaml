@@ -76,7 +76,7 @@ env:
 
   # XMX and XMS should be lower that the limits (50-75%)
   # Some data are stored outside of the heap.
-  ES_JAVA_OPTS: "-Xms12Gi -Xmx12Gi"
+  ES_JAVA_OPTS: "-Xms12g -Xmx12g"
 
 ragflow:
   image:
