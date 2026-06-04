@@ -110,6 +110,12 @@ ragflow:
   deployment:
     strategy:
     resources:
+      requests:
+        cpu: "4"
+        memory: "6Gi"
+      limits:
+        cpu: "4"
+        memory: "6Gi"
   service:
     # Use LoadBalancer to expose the web interface externally
     type: ClusterIP
@@ -137,6 +143,12 @@ infinity:
   deployment:
     strategy:
     resources:
+      requests:
+        cpu: "4"
+        memory: "6Gi"
+      limits:
+        cpu: "4"
+        memory: "6Gi"
   service:
     type: ClusterIP
 
